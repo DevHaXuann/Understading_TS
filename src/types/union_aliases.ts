@@ -47,7 +47,7 @@ function combine3(
     input2: Combinable, 
     resultConversion: ConversionDescription
 ){
-        //logic
+    //logic
 }
 
 //4
@@ -61,4 +61,37 @@ function greet(user: User) {
 }
 function isOlder(user: User, checkAge: number){
     return checkAge > user.age;
+}
+
+//5
+declare function pad(s: string, n: number, direction: "left" | "right"): string;
+pad('No Name', 21, 'left');
+let s = "right";
+// pad("No Name", 20, s);//Error
+let s1: "left" | "right" = "right";
+pad('No Name',25, s1);
+
+//Contextual typing: Ts ưu tiên khai báo với array trước
+declare function map<T, U> (ts: T[], f: (t: T)=> U): U[];
+let sns = map([1,2,3], (number)=> number.toString());
+
+declare function run<T> (thunk: (t: T) => void): T;
+let i: {inference: string} = run((o) => {
+    o.inference = 'Insert state here';
+})
+
+//Discriminated Unions
+type Shape = 
+    | {kind: 'circle'; radius: number}
+    | {kind: 'square'; x: number}
+    | {kind: 'triangle'; x: number; y: number}
+
+function area(s: Shape){
+    if (s.kind === 'circle') {
+        return Math.PI * s.radius * s.radius;
+    } else if (s.kind === 'square') {
+        return s.x * s.x;
+    } else {
+        return (s.x * s.x) / 2;
+    }
 }
