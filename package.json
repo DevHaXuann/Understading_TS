@@ -1,7 +1,7 @@
 {
-  "name": "understanding_ts",
+  "name": "typescript-cheatsheets",
   "version": "1.0.0",
-  "description": "Understading TypeScript",
+  "description": "typescript cheatsheets",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevHaXuann/Understading_TS.git"
+    "url": "git+https://github.com/XuanNeil/typescript-cheatsheets.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DevHaXuann/Understading_TS/issues"
-  },
-  "homepage": "https://github.com/DevHaXuann/Understading_TS#readme",
   "devDependencies": {
     "lite-server": "^2.6.1",
     "typescript": "^4.6.2"
