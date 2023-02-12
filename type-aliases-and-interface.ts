@@ -52,7 +52,7 @@ const animal: IMammal = {
 // type Reptile = {
 //     title: string;
 // }
-// Error: Duplicate identifier 'Window'.
+// Error: Duplicate identifier 'Reptile'.
 // type Reptile = {
 //     breed?: string;
 // }
