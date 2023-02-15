@@ -12,7 +12,10 @@
  *  - Quy tắc: Nếu 1 thông số loại chỉ xuất hiện ở 1 vị trí, hãy xem xét lại nếu bạn thực sự cần nó.
  * 10. Optional Parameters in Callbacks
  * 11. Function Overloads
- * 12.
+ * 12. Other Types to Know About
+ * 13. Rest Parameters and Arguments
+ * 14. Parameter Destructuring
+ *
  */
 
 
@@ -153,3 +156,82 @@ function myForEach<Type>(arr: Type[], callback: (arg: Type, index?: number) => v
 /**
  * Function Overloads
  */
+function makeDate(timestamp: number): Date;
+function makeDate(m: number, d: number, y: number): Date;
+function makeDate(mOrTimestamp: number, d?: number, y?: number):Date {
+    if (d !== undefined && y !== undefined){
+        return new Date(y, mOrTimestamp, d);
+    }else {
+        return new Date(mOrTimestamp);
+    }
+}
+const date1 = makeDate(12345678);
+const date2 = makeDate(5, 5, 5,);
+const date3= makeDate(1234567, 5, 5);
+
+/**
+ * Other Types to Know About
+ * 1. void
+ * 2. object
+ * 3. unknown
+ * 4. never
+ * 5. Functon
+ */
+
+// 1. void
+// void đại diện cho giá trị trả về của các hàm không trả về giá trị
+// Trong JS, 1 hàm khô trả về bất kỳ giá trị nào sẽ ngầm hiểu là trả về giá trị undefined.
+// Tuy nhiên, void và undefined không giống nhau ở trong TypeScript
+function noop(){// inferred return type is void
+ return;
+}
+
+// 4. never
+// một function không bao giờ trả về giá trị
+function fail(message: string): never {
+    throw new Error(message);
+}
+function fn(x: string | number){
+    if (typeof x === "string"){
+        // do something
+    }else if (typeof x === "number"){
+        // do something else
+    }else {
+        x;
+    }
+}
+
+// 5.Function
+function doSomething2(f: Function){
+    return f(1, 2, 3);
+}
+
+/**
+ * Rest Parameters and Arguments
+ */
+// 1. Rest Parameters
+function multiply(n: number, ...m: number[]): number[]{
+    return m.map((x)=> x * n);
+}
+multiply(10, 1, 2, 3, 4); // [10, 20, 30, 40]
+
+// 2. Rest Arguments
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+arr1.push(...arr2);
+
+// TypeScript không cho array là bất biến (immutable).
+// const args = [5, 8];
+// const angle = Math.atan2(...args)// error: A spread argument must either have a tuple type or be passed to a rest parameter.
+
+// đơn giản nhất là sử dụng const
+const arg = [5, 8] as const;
+const angle2 = Math.atan2(...arg);
+
+/**
+ * Parameter Destructuring
+ */
+
+function sumABC({a, b, c}: {a: number, b: number, c: number}){
+    return a + b + c;
+}
